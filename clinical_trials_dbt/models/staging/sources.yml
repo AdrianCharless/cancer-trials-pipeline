@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: clinical_trials
+    database: cancer-trials-pipeline
+    schema: clinical_trials
+    tables:
+      - name: raw_studies

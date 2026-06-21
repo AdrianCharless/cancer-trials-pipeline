@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_clinical_trials
+    columns:
+      - name: nct_id
+        tests:
+          - not_null
+          - unique
+      - name: overall_status
+        tests:
+          - not_null
+      - name: brief_title
+        tests:
+          - not_null

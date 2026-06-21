@@ -66,7 +66,12 @@ def load_to_bigquery():
             "conditions": str(conditions.get("conditions", [])),
         })
 
-    errors = client.insert_rows_json(table_id, rows)
+    job_config = bigquery.LoadJobConfig(
+    write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
+    )
+    job = client.load_table_from_json(rows, table_id, job_config=job_config)
+    job.result()
+    errors = []
     if errors:
         raise Exception(f"BigQuery insert errors: {errors}")
     
