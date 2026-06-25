@@ -25,42 +25,32 @@ An end to end data engineering pipeline that ingests cancer clinical trial data 
 5. **Visualize** — Streamlit dashboard surfaces trial counts, sponsor activity, and enrollment trends
 
 ## dbt Models
+
+```
 models/
-
 ├── staging/
-
 │   ├── sources.yml
-
 │   ├── schema.yml
-
 │   └── stg_clinical_trials.sql
-
 └── marts/
-
-└── trial_summary.sql
+    └── trial_summary.sql
+```
 
 ## Project Structure
+
+```
 cancer-trials-pipeline/
-
 ├── dags/
-
 │   └── clinical_trials_fetch.py
-
 ├── clinical_trials_dbt/
-
 │   ├── models/
-
 │   │   ├── staging/
-
 │   │   └── marts/
-
 │   └── dbt_project.yml
-
 ├── dashboard.py
-
 ├── docker-compose.yaml
-
 └── .gitignore
+```
 
 ## Setup
 
