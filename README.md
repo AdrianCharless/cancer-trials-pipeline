@@ -26,11 +26,17 @@ An end to end data engineering pipeline that ingests cancer clinical trial data 
 
 ## dbt Models
 models/
+
 ├── staging/
+
 │   ├── sources.yml
+
 │   ├── schema.yml
+
 │   └── stg_clinical_trials.sql
+
 └── marts/
+
 └── trial_summary.sql
 
 ## Project Structure
@@ -46,44 +52,3 @@ cancer-trials-pipeline/
 ├── docker-compose.yaml
 └── .gitignore
 
-## Setup
-
-### Prerequisites
-- Docker Desktop
-- Python 3.11
-- Google Cloud account with BigQuery enabled
-
-### Running the Pipeline
-
-1. Clone the repo
-2. Add your Google service account credentials to `config/google_credentials.json`
-3. Start Airflow:
-```bash
-docker compose up
-```
-4. Trigger the DAG at `localhost:8080`
-5. Activate the virtual environment and run dbt:
-```bash
-source dbt-env/bin/activate
-cd clinical_trials_dbt
-dbt run
-dbt test
-```
-6. Launch the dashboard:
-```bash
-streamlit run dashboard.py
-```
-
-## Data Quality
-
-dbt tests validate the following on every run:
-- `nct_id` is unique and not null across all trial records
-- `overall_status` is not null
-- `brief_title` is not null
-
-## Key Design Decisions
-
-- **Truncate-and-reload pattern** — raw table is overwritten on each DAG run to prevent duplicate records
-- **Layered dbt architecture** — staging models handle cleaning and typing; mart models handle aggregation
-- **Raw JSON landing layer** — raw data is preserved to disk before loading, enabling reprocessing without re-hitting the API
-- **Docker Compose for Airflow** — ensures consistent, reproducible local environment without native installation
