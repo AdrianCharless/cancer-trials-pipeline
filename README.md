@@ -3,7 +3,7 @@
 An end to end data engineering pipeline that ingests cancer clinical trial data from the ClinicalTrials.gov API, transforms it using dbt, and visualizes insights through a Streamlit dashboard.
 
 ## Architecture
-
+![Architecture](assets/architecture.png)
 ## Tech Stack
 
 | Tool | Purpose |
